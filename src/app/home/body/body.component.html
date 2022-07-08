@@ -1,0 +1,10 @@
+<div class="pokemon-list-container" infiniteScroll
+      [infiniteScrollDistance]="2"
+      [infiniteScrollThrottle]="50"
+      (scrolled)="onScroll()">
+    <app-pokemon-card (click)="onClickPokemon(poke)" *ngFor="let poke of pokemons | search:value" [pokemon]="poke"></app-pokemon-card>
+</div>
+
+<div class="back-to-top-button" (click)="backToTop()" *ngIf="showButton">
+    <img src="../assets/arrow-up-icon.png" alt="back-to-top-button-img">
+</div>

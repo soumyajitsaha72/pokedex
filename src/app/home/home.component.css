@@ -1,0 +1,19 @@
+.container {
+    background-color: #f6f8fc;
+    background-image: url('/assets/pokeball-icon.png');
+    background-repeat: no-repeat;
+    background-position-x: -180px;
+    background-position-y: -80px;
+}
+
+.flex {
+    min-height: 100vh;
+    margin: 0 10vw;
+
+    /* display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 20% auto 10%; */
+
+    display: flex;
+    flex-direction: column;
+}

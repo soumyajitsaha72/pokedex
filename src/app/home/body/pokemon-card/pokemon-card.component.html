@@ -1,0 +1,9 @@
+<div class="pokemon-container">
+    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{ pokemon.id }}.png" alt="pokemon-img"
+        class="pokemon-container-image">
+    <span class="pokemon-container-id">No. {{ pokemon.id }}</span>
+    <h3 class="pokemon-container-name">{{ pokemon.name | titlecase }}</h3>
+    <div class="pokemon-container-types">
+        <div *ngFor="let t of pokemon.types" class="type-container" [ngStyle]="{'background-color' : typeColors[t.type.name]}"> {{ t.type.name | titlecase}} </div>
+    </div>
+</div>

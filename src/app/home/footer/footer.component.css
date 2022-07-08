@@ -1,0 +1,15 @@
+.footer {
+    margin-left: 0.625rem;
+    margin-right: 0.625rem;
+    margin-bottom: 1.8rem;
+
+    border-radius: 1.25rem;
+    box-shadow: #EDEDED 0 10px 10px;
+    padding: 15px;
+    background-color: white;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
