@@ -10,8 +10,6 @@ export class PokemonService {
     pokemons : Pokemon[] = [];
 
     base_url = "https://pokeapi.co/api/v2/";
-    // limit:number = 50;
-    offset:number = 0;
 
     constructor(private http: HttpClient) {}
 
@@ -23,8 +21,8 @@ export class PokemonService {
         return this.pokemons.slice(startIndex,endIndex);
     }
 
-    fetchPokemonUrl(offset : number){
-        return this.http.get(this.base_url+"pokemon?limit=13&offset="+offset).pipe(map((res) => res['results']))
+    fetchPokemonUrl(){
+        return this.http.get(this.base_url+"pokemon?limit=898&offset=0").pipe(map((res) => res['results']))
     }
 
     fetchPokemonDetails(pokeUrlArray : any[]){

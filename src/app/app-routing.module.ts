@@ -4,18 +4,18 @@ import { HomeComponent } from './home/home.component';
 import { SelectedPokmonComponent } from './selected-pokmon/selected-pokmon.component';
 
 const routes: Routes = [
-  {
-    path: "",
-    component: HomeComponent
-  },
-  {
-    path : "pokemon/:id",
-    component : SelectedPokmonComponent
-  },
-  {
-    path: "**",
-    redirectTo: ""
-  }
+  // {
+  //   path: "",
+  //   component: HomeComponent
+  // },
+  // {
+  //   path : "pokemon/:id",
+  //   component : SelectedPokmonComponent
+  // },
+  // {
+  //   path: "**",
+  //   redirectTo: ""
+  // }
 ];
 
 @NgModule({
