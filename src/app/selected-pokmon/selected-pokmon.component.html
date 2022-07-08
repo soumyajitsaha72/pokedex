@@ -1,96 +1,102 @@
-<div class="pokemon-container" [ngStyle]="{'background-color' : typeColors[pokemon.types[0].type.name] }">
-    <div class="pokemon-details-container">
-        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/{{ pokemon.id }}.gif" 
-            default="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{ pokemon.id }}.png"
-            alt="pokemon-img" 
-            class="current-pokemon-image">
-        <!-- <img src="https://projectpokemon.org/images/normal-sprite/{{ pokemon.name }}.gif" alt="pokemon-img" class="current-pokemon-image"> -->
-        <div class="pokemon-info">
-
-            <span class="pokemon-info-id">No. {{ pokemon.id }}</span>
-
-            <h2 class="pokemon-info-name">{{ pokemon.name | titlecase}}</h2>
-
-            <div class="pokemon-info-types">
-                <div class="row">
-                    <div *ngFor="let t of pokemon.types" class="type-container" [ngStyle]="{'background-color' : typeColors[t.type.name]}">
-                        {{ t.type.name | titlecase}} </div>
+<div *ngIf="isDataAvailable">
+    <div class="pokemon-container" [ngStyle]="{'background-color' : typeColors[pokemon.types[0].type.name] }">
+        <div class="pokemon-details-container">
+            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/{{ pokemon.id }}.gif"
+                default="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{ pokemon.id }}.png"
+                alt="pokemon-img" class="current-pokemon-image">
+            <!-- <img src="https://projectpokemon.org/images/normal-sprite/{{ pokemon.name }}.gif" alt="pokemon-img" class="current-pokemon-image"> -->
+            <div class="pokemon-info">
+    
+                <span class="pokemon-info-id">No. {{ pokemon.id }}</span>
+    
+                <h2 class="pokemon-info-name">{{ pokemon.name | titlecase}}</h2>
+    
+                <div class="pokemon-info-types">
+                    <div class="row">
+                        <div *ngFor="let t of pokemon.types" class="type-container"
+                            [ngStyle]="{'background-color' : typeColors[t.type.name]}">
+                            {{ t.type.name | titlecase}} </div>
+                    </div>
                 </div>
-            </div>
-
-            <h4 class="pokemon-about-heading">About</h4>
-            <span class="pokemon-about">{{ pokemon.details | titlecase }}</span>
-
-            <div class="pokemon-height-weight">
-                <div class="pokemon-height">
-                    <h4 class="pokemon-height-weight-heading">Height</h4>
-                    <div class="pokemon-height-details"> {{ pokemon.height/10 }}m </div>
+    
+                <h4 class="pokemon-about-heading">About</h4>
+                <span class="pokemon-about">{{ pokemon.details | titlecase }}</span>
+    
+                <div class="pokemon-height-weight">
+                    <div class="pokemon-height">
+                        <h4 class="pokemon-height-weight-heading">Height</h4>
+                        <div class="pokemon-height-details"> {{ pokemon.height/10 }}m </div>
+                    </div>
+                    <div class="pokemon-weight">
+                        <h4 class="pokemon-height-weight-heading">Weight</h4>
+                        <div class="pokemon-weight-details"> {{ pokemon.weight/10 }}kg </div>
+                    </div>
                 </div>
-                <div class="pokemon-weight">
-                    <h4 class="pokemon-height-weight-heading">Weight</h4>
-                    <div class="pokemon-weight-details"> {{ pokemon.weight/10 }}kg </div>
-                </div>
-            </div>
-
-            <div class="pokemon-abilities">
-                <h4 class="pokemon-abilities-heading">Abilities</h4>
-                <div class="row">
-                    <div class="pokemon-ability" *ngFor="let a of pokemon.abilities">{{ a.ability.name | titlecase }}</div>
-                </div>
-            </div>
-
-            <h4 class="pokemon-stats-heading">Stats</h4>
-            <div class="pokemon-stats">
-                <div class="pokemon-stats-container">
-                    <div class="pokemon-stats-name" style="background-color: #df2140;">HP</div>
-                    <h5 class="pokemon-stats-value">{{ pokemon.stats[0].base_stat }}</h5>
-                </div>
-                <div class="pokemon-stats-container">
-                    <div class="pokemon-stats-name" style="background-color: #ff994d;">ATK</div>
-                    <h5 class="pokemon-stats-value">{{ pokemon.stats[1].base_stat }}</h5>
-                </div>
-                <div class="pokemon-stats-container">
-                    <div class="pokemon-stats-name" style="background-color: #eecd3d;">DEF</div>
-                    <h5 class="pokemon-stats-value">{{ pokemon.stats[2].base_stat }}</h5>
-                </div>
-                <div class="pokemon-stats-container">
-                    <div class="pokemon-stats-name" style="background-color: #85ddff;">SpA</div>
-                    <h5 class="pokemon-stats-value">{{ pokemon.stats[3].base_stat }}</h5>
-                </div>
-                <div class="pokemon-stats-container">
-                    <div class="pokemon-stats-name" style="background-color: #96da83;">SpD</div>
-                    <h5 class="pokemon-stats-value">{{ pokemon.stats[4].base_stat }}</h5>
-                </div>
-                <div class="pokemon-stats-container">
-                    <div class="pokemon-stats-name" style="background-color: #fb94a8;">SPD</div>
-                    <h5 class="pokemon-stats-value">{{ pokemon.stats[5].base_stat }}</h5>
-                </div>
-                <div class="pokemon-stats-container" style="background-color: #88aaea;">
-                    <div class="pokemon-stats-name" style="background-color: #7195dc;">TOT</div>
-                    <h5 class="pokemon-stats-value">{{ pokemon.stats[0].base_stat + pokemon.stats[1].base_stat + pokemon.stats[2].base_stat + pokemon.stats[3].base_stat + pokemon.stats[4].base_stat + pokemon.stats[5].base_stat}}</h5>
-                </div>
-            </div>
-
-            <div class="pokemon-evolution">
-                <h4 class="pokemon-evolution-heading">Evolution</h4>
-                <div class="pokemon-evolution-details">
-                    <div *ngFor="let e of pokemon.evolution">
-                        <img src="https://projectpokemon.org/images/normal-sprite/{{ e.species_name }}.gif"
-                            alt="pokemon-evolution-img" class="pokemon-evolution-img">
-                        <div class="pokemon-evolution-level">lv. {{ e.min_level ? e.min_level : '?' }}
+    
+                <div class="pokemon-abilities">
+                    <h4 class="pokemon-abilities-heading">Abilities</h4>
+                    <div class="row">
+                        <div class="pokemon-ability" *ngFor="let a of pokemon.abilities">{{ a.ability.name | titlecase }}
                         </div>
                     </div>
-                    <!-- <img src="https://projectpokemon.org/images/normal-sprite/{{ pokemon.evolution[0]?.species_name }}.gif" alt="pokemon-evolution-img" class="pokemon-evolution-img">
-                    <div class="pokemon-evolution-level">lv. {{ pokemon.evolution[1]?.min_level ? pokemon.evolution[1].min_level : '?' }}</div>
-                    <img src="https://projectpokemon.org/images/normal-sprite/{{ pokemon.evolution[1]?.species_name }}.gif" alt="pokemon-evolution-img" class="pokemon-evolution-img">
-                    <div class="pokemon-evolution-level">lv. {{ pokemon.evolution[2]?.min_level ? pokemon.evolution[2].min_level : '?' }}</div>
-                    <img src="https://projectpokemon.org/images/normal-sprite/{{ pokemon.evolution[2]?.species_name }}.gif" alt="pokemon-evolution-img" class="pokemon-evolution-img"> -->
                 </div>
+    
+                <h4 class="pokemon-stats-heading">Stats</h4>
+                <div class="pokemon-stats">
+                    <div class="pokemon-stats-container">
+                        <div class="pokemon-stats-name" style="background-color: #df2140;">HP</div>
+                        <h5 class="pokemon-stats-value">{{ pokemon.stats[0].base_stat }}</h5>
+                    </div>
+                    <div class="pokemon-stats-container">
+                        <div class="pokemon-stats-name" style="background-color: #ff994d;">ATK</div>
+                        <h5 class="pokemon-stats-value">{{ pokemon.stats[1].base_stat }}</h5>
+                    </div>
+                    <div class="pokemon-stats-container">
+                        <div class="pokemon-stats-name" style="background-color: #eecd3d;">DEF</div>
+                        <h5 class="pokemon-stats-value">{{ pokemon.stats[2].base_stat }}</h5>
+                    </div>
+                    <div class="pokemon-stats-container">
+                        <div class="pokemon-stats-name" style="background-color: #85ddff;">SpA</div>
+                        <h5 class="pokemon-stats-value">{{ pokemon.stats[3].base_stat }}</h5>
+                    </div>
+                    <div class="pokemon-stats-container">
+                        <div class="pokemon-stats-name" style="background-color: #96da83;">SpD</div>
+                        <h5 class="pokemon-stats-value">{{ pokemon.stats[4].base_stat }}</h5>
+                    </div>
+                    <div class="pokemon-stats-container">
+                        <div class="pokemon-stats-name" style="background-color: #fb94a8;">SPD</div>
+                        <h5 class="pokemon-stats-value">{{ pokemon.stats[5].base_stat }}</h5>
+                    </div>
+                    <div class="pokemon-stats-container" style="background-color: #88aaea;">
+                        <div class="pokemon-stats-name" style="background-color: #7195dc;">TOT</div>
+                        <h5 class="pokemon-stats-value">{{ pokemon.stats[0].base_stat + pokemon.stats[1].base_stat +
+                            pokemon.stats[2].base_stat + pokemon.stats[3].base_stat + pokemon.stats[4].base_stat +
+                            pokemon.stats[5].base_stat}}</h5>
+                    </div>
+                </div>
+    
+                <div class="pokemon-evolution">
+                    <h4 class="pokemon-evolution-heading">Evolution</h4>
+                    <div class="pokemon-evolution-details">
+                        <div *ngFor="let e of pokemon.evolution">
+                            <img src="https://projectpokemon.org/images/normal-sprite/{{ e.species_name }}.gif"
+                                alt="pokemon-evolution-img" class="pokemon-evolution-img">
+                            <div class="pokemon-evolution-level">lv. {{ e.min_level ? e.min_level : '?' }}
+                            </div>
+                        </div>
+                        <!-- <img src="https://projectpokemon.org/images/normal-sprite/{{ pokemon.evolution[0]?.species_name }}.gif" alt="pokemon-evolution-img" class="pokemon-evolution-img">
+                        <div class="pokemon-evolution-level">lv. {{ pokemon.evolution[1]?.min_level ? pokemon.evolution[1].min_level : '?' }}</div>
+                        <img src="https://projectpokemon.org/images/normal-sprite/{{ pokemon.evolution[1]?.species_name }}.gif" alt="pokemon-evolution-img" class="pokemon-evolution-img">
+                        <div class="pokemon-evolution-level">lv. {{ pokemon.evolution[2]?.min_level ? pokemon.evolution[2].min_level : '?' }}</div>
+                        <img src="https://projectpokemon.org/images/normal-sprite/{{ pokemon.evolution[2]?.species_name }}.gif" alt="pokemon-evolution-img" class="pokemon-evolution-img"> -->
+                    </div>
+                </div>
+    
             </div>
-
         </div>
     </div>
 </div>
+
 
 
 <div class="close-button">

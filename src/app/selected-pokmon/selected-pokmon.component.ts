@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Pokemon } from '../models/pokemon.model';
-import { PokemonService } from '../services/pokemon-api.service';
 import { typeColors } from 'src/app/shared/pokemon-type-colors';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs';
@@ -12,24 +11,30 @@ import { map } from 'rxjs';
   styleUrls: ['./selected-pokmon.component.css']
 })
 export class SelectedPokmonComponent implements OnInit {
-  pokemons : Pokemon[] = [];
   pokemon : Pokemon;
   pokemonId : number;
-
   typeColors : {[key:string] : string} = {}
 
-  constructor(private router: Router, private route: ActivatedRoute, private pokemonService: PokemonService, private http: HttpClient) { }
+  isDataAvailable : boolean = false;
+
+  constructor(private router: Router, private route: ActivatedRoute, private http: HttpClient) { }
 
   ngOnInit(): void {
-    this.route.params.subscribe((res) => this.pokemonId = res.id - 1);
     this.typeColors = typeColors;
-    this.pokemons = this.pokemonService.pokemons;
-    this.pokemon = this.pokemons[this.pokemonId];
-    
-    this.http.get("https://pokeapi.co/api/v2/pokemon-species/"+(this.pokemonId+1))
+    this.route.params.subscribe((res) => this.pokemonId = (res.id));
+
+    this.http.get("https://pokeapi.co/api/v2/pokemon/"+(this.pokemonId)).subscribe(
+      (res) => {
+        this.pokemon = new Pokemon(res['id'],res['name'],res['height'],res['weight'],res['abilities'],res['types'],res['stats']);
+
+      }
+    )
+
+    this.http.get("https://pokeapi.co/api/v2/pokemon-species/"+(this.pokemonId))
     .subscribe(
       (res) => {
         this.pokemon.details = res['flavor_text_entries'][0].flavor_text;
+        this.isDataAvailable = true;
 
         this.http.get(res['evolution_chain'].url)
         .pipe(
@@ -53,7 +58,8 @@ export class SelectedPokmonComponent implements OnInit {
         )
         .subscribe(
           (evolutionData) => {
-            this.pokemon.evolution = evolutionData;
+            this.pokemon["evolution"] = evolutionData;
+            // this.isDataAvailable = true;
           }
         )
 

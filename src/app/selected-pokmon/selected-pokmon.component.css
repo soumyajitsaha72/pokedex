@@ -51,7 +51,7 @@
     object-fit: contain;
     image-rendering: pixelated;
     max-width: 350px;
-    max-height: 22vh;
+    max-height: 18vh;
     height: 267px;
 }
 
@@ -264,8 +264,24 @@
     font-size: 12px;
 }
 
+@media only screen and (max-width: 480px) {
+    .pokemon-details-container {
+        height: 75vh;
+    }
 
+    .current-pokemon-image {
+        bottom: 70vh;
+    }
+}
+@media only screen and (max-width: 380px) {
+    .pokemon-details-container {
+        height: 70vh;
+    }
 
+    .current-pokemon-image {
+        bottom: 65vh;
+    }
+}
 
 
 
