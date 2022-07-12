@@ -7,9 +7,10 @@ export class Pokemon {
     weight : number;
     details : string;
     stats : any[];
+    evolutionUrl : string;
     evolution : any[];
 
-    constructor(id:number, name:string, height:number, weight: number, abilities:any[], types:any[], stats:any[], details:string, evolution:any[]) {
+    constructor(id:number, name:string, height:number, weight: number, abilities:any[], types:any[], stats:any[], details:string, evolutionUrl: string) {
         this.id = id;
         this.name = name;
         this.height = height;
@@ -18,6 +19,7 @@ export class Pokemon {
         this.types = types;
         this.stats = stats;
         this.details = details;
-        this.evolution = evolution;
+        this.evolutionUrl = evolutionUrl;
+        this.evolution = [];
     }
 }
