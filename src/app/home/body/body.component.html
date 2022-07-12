@@ -2,7 +2,7 @@
       [infiniteScrollDistance]="2"
       [infiniteScrollThrottle]="50"
       (scrolled)="onScroll()">
-    <app-pokemon-card (click)="onClickPokemon(poke)" *ngFor="let poke of pokemons | search:value | slice:start:end " [pokemon]="poke"></app-pokemon-card>
+    <app-pokemon-card (click)="onClickPokemon(poke)" *ngFor="let poke of pokemons | sort:'id' | search:value | slice:start:end " [pokemon]="poke"></app-pokemon-card>
 </div>
 
 <div class="back-to-top-button" (click)="backToTop()" *ngIf="showButton">

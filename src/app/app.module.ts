@@ -14,6 +14,7 @@ import { HomeComponent } from './home/home.component';
 import { SelectedPokmonComponent } from './selected-pokmon/selected-pokmon.component';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { ImageFallbackDirective } from './shared/image-fallback/image-fallback.directive';
+import { SortPipe } from './pipes/sort/sort.pipe';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { ImageFallbackDirective } from './shared/image-fallback/image-fallback.d
     SearchPipe,
     HomeComponent,
     SelectedPokmonComponent,
-    ImageFallbackDirective
+    ImageFallbackDirective,
+    SortPipe
   ],
   imports: [
     BrowserModule,
